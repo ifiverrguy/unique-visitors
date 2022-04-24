@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  category-app:
+    build: .
+    container_name: myapp
+    volumes:
+      - ./:/var/www
+    networks:
+      - net
+
+  category-app-redis:
+    image: redis:alpine
+    container_name: redis
+    networks:
+      - net
+
+  category-app-nginx:
+    build: ./.nginx
+    container_name: nginx
+    ports:
+      - 8080:80
+    networks:
+      - net
+    volumes:
+      - ./:/var/www
+
+networks:
+  net:
+    driver: bridge
