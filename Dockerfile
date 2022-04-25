@@ -1,9 +1,3 @@
-FROM php:7.3.6-fpm-alpine3.9
-
-RUN apk add --no-cache bash
-
-EXPOSE 9000
-
-# Remove inital
-WORKDIR /var/www
-RUN rm -rf /var/www/html
+FROM php:8.0-apache
+COPY . /var/www/html/
+EXPOSE 80
